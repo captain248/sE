@@ -79,7 +79,7 @@
       <div class="modal-body">
 
         <!-- content goes here -->
-       
+       <form>
           <div class="form-group">
           <p id=text_login></p>
             <label for="exampleInputEmail1">Username</label>
@@ -107,7 +107,7 @@
 
 
           </div>
-
+        </form>
           <!--          <div class="checkbox">
                 <label>
                   <input type="checkbox"> Check me out
