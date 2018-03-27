@@ -14,7 +14,7 @@
 	          $string = $stringCut.'...';
 	        }
 	        $timestamp = strtotime($news['date']);
-                  $catdate = "&nbsp;&nbsp;&nbsp;&nbsp;".date('d', $timestamp)."-".date('m',$timestamp)."-".(int)(date('Y', $timestamp) + 543);
+                  $catdate = "&nbsp;&nbsp;&nbsp;&nbsp;";
                   $string .= $catdate;
 	        $string = iconv("UTF-8", "UTF-8//IGNORE", $string);
 	        echo "<li><a href=\"page_news.php?id=".$news['id']."\" target=\"_blank\" class=\"font-color4\">". $string."</a></li>";

@@ -9,7 +9,7 @@
 					
 						}
 		else{
-					echo "<p style=\"color:white;\">HELLO คุณ <a href=\"personal_information.php\" style=\"color:blue;\">".$_SESSION['fname']."</a><br>";
+					echo "<p style=\"color:white;\">สวัสดี  <a href=\"personal_information.php\" id=\"profile\" style=\"color:blue;\">".$_SESSION['userName']."</a><br>";
 					echo "<a href=\"logout.php\" style=\"color:white;\" class=\"glyphicon glyphicon-log-out\">Logout </a>";
 		}
 			

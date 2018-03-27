@@ -33,7 +33,7 @@
 		
 	}else{
 		$arr = array('check' => "notpass",
-														'dataAlert' => "pid" 
+														'dataAlert' => "Username & Password Incorrect" 
 													);					
 		
 		

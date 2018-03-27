@@ -61,8 +61,8 @@
 
 <link href="css/blog-post.css" rel="stylesheet">
 
-<a href="#" style="color:white;" data-toggle="modal" data-target="#login-modal">
-<span class="glyphicon glyphicon-log-in"></span> Login</a>
+<a href="#" id="login" style="color:white;" data-toggle="modal" data-target="#login-modal">
+<span class="glyphicon glyphicon-log-in"></span> Sign in</a>
 <br>
 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"
@@ -82,12 +82,12 @@
        <form>
           <div class="form-group">
           <p id=text_login></p>
-            <label for="exampleInputEmail1">Username</label>
-            <input type="text" class="form-control input-lg" id="username" placeholder="Username" name="username">
+            <label >Username</label>
+            <input type="text" class="form-control input-lg" id="usernamelogin" placeholder="Username" name="usernamelogin" >
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control input-lg" id="password" placeholder="password" name="password">
+            <label >Password</label>
+            <input type="password" class="form-control input-lg" id="passwordlogin" placeholder="password" name="passwordlogin">
           </div>
           <div class="form-group">
 
@@ -107,7 +107,7 @@
 
 
           </div>
-        </form>
+        
           <!--          <div class="checkbox">
                 <label>
                   <input type="checkbox"> Check me out
@@ -115,9 +115,9 @@
               </div>
 -->
 
-          <button class="btn info" id="submit"  >Submit</button>
+          <button class="btn info" id="submit" disabled >Submit</button>
 
-        
+      </form>  
       </div>
       <div class="modal-footer">
 
@@ -136,8 +136,8 @@ var text_login = document.getElementById("text_login");
 
   $("#submit").on("click", function (g) {
     
-  var username = $('#username').val();
-  var password = $('#password').val();
+  var username = $('#usernamelogin').val();
+  var password = $('#passwordlogin').val();
     g.preventDefault();
     
     $.ajax({
@@ -151,7 +151,7 @@ var text_login = document.getElementById("text_login");
         value = $.parseJSON(value);
         if (value.check == "notpass") {
            if(username=="" || password==""){ 
-            text_login.innerHTML = "Username & Password Incorrect";
+            text_login.innerHTML = "Please input username and password";
             text_login.style.color = "#ff6666";
             }
             else{
