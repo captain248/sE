@@ -36,6 +36,7 @@ if(empty($_SESSION)){
 <?php
 $pass ="";
 $ssn = "";
+$as1="";$as2="";$as3="";
 
 //for ssn
 for($i= 0; $i < strlen($_SESSION["personID"]); $i++){
@@ -49,6 +50,46 @@ for($i= 0; $i < strlen($_SESSION["personID"]); $i++){
 for($i= 0; $i < strlen($_SESSION["password"]); $i++){
 	$pass = $pass."x";
 }
+
+//forqustion
+if($_SESSION["qNO1"]=='1')
+$question1 = "What work do you do?";
+else if($_SESSION["qNO1"]=='2')
+$question1 = "What is your full name?";
+else
+$question1 = "What is your favourite hobby?";
+
+for($i= 0; $i < strlen($_SESSION["question1"]); $i++){
+	$as1 = $as1."x";
+}
+
+if($_SESSION["qNO2"]=='1')
+$question2 = "What do you like to read?";
+else if($_SESSION["qNO2"]=='2')
+$question2 = "What seasons do you like?";
+else
+$question2 = "What country do you like most?";
+
+for($i= 0; $i < strlen($_SESSION["question2"]); $i++){
+	$as2 = $as2."x";
+}
+
+if($_SESSION["qNO3"]=='1')
+$question3 = "How many people are there in your family?";
+else if($_SESSION["qNO3"]=='2')
+$question3 = "Where do you like to watch movies?";
+else
+$question3 = "What is the capital of your country?";
+
+for($i= 0; $i < strlen($_SESSION["question2"]); $i++){
+	$as3 = $as3."x";
+}
+
+
+
+
+
+
 ?>
 
 
@@ -60,57 +101,111 @@ for($i= 0; $i < strlen($_SESSION["password"]); $i++){
 					<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2"></div>
 					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 						<h3>ข้อมูลส่วนตัว</h3>
-
+<hr>
 
 
 
 						<form class="form-edit row rowspace-5">
 							<div class="form-group ">
-								<div class="col-xs-3 col-sm-3 col-md-3">
+								<div class="col-xs-2 col-sm-2 col-md-2">
 									ชื่อ-นามสกุล
 								</div>
-								<div class="col-xs-9 col-sm-9 col-md-9">
+								<div class="col-xs-10 col-sm-10 col-md-10">
 									<input type="text" id="test" name="test" class="form-control " value="<?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?> " disabled>
 								</div>
 							</div>
+
 							<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
 							<div class="form-group ">
-								<div class="col-xs-3 col-sm-3 col-md-3">ssn/passport</div>
-								<div class="col-xs-7 col-sm-7 col-md-7">
+								<div class="col-xs-2 col-sm-2 col-md-2">ssn/passport</div>
+								<div class="col-xs-8 col-sm-8 col-md-8">
 									<input type="text" class="form-control " value="<?php echo $ssn; ?>" disabled>
 								</div>
 								<div class="col-xs-2 col-sm-2 col-md-2">
 									<a href="#">
-										<span style="padding-top: 15px" class="glyphicon glyphicon-log-in"></span>แก้ไข</a>
+										<span  class="glyphicon glyphicon-log-in"></span>แก้ไข</a>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
 							<div class="form-group">
-								<div class="col-xs-3 col-sm-3 col-md-3">
+								<div class="col-xs-2 col-sm-2 col-md-2">
 									username
 								</div>
-								<div class="col-xs-9 col-sm-9col-md-9">
+								<div class="col-xs-10 col-sm-10 col-md-10">
 									<input type="text" id="test" name="test" class="form-control " value="<?php echo $_SESSION['userName'] ?> " disabled>
 								</div>
 							</div>
+							
 							<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
 							<div class="form-group ">
-								<div class="col-xs-3 col-sm-3 col-md-3">password</div>
-								<div class="col-xs-7 col-sm-7 col-md-7">
+								<div class="col-xs-2 col-sm-2 col-md-2">password</div>
+								<div class="col-xs-8 col-sm-8 col-md-8">
 									<input type="text" class="form-control " value="<?php echo $pass; ?>" disabled>
 								</div>
 								<div class="col-xs-2 col-sm-2 col-md-2">
 									<a href="#">
-										<span style="padding-top: 15px" class="glyphicon glyphicon-log-in"></span>แก้ไข</a>
+										<span  class="glyphicon glyphicon-log-in"></span>change password</a>
 								</div>
 							</div>
 
+<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
+							<div class="form-group">
+								<div class="col-xs-2 col-sm-2 col-md-2">
+									วันเกิด
+								</div>
+								<div class="col-xs-10 col-sm-10 col-md-10">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $_SESSION['birthDate'] ?> " disabled>
+								</div>
+							</div>
 
+<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
+							<div class="form-group">
+								<div class="col-xs-2 col-sm-2 col-md-2">
+									คำถาม1
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $question1 ?> " disabled>
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-4">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $as1 ?> " disabled>
+								</div>
+							</div>
 
+<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
+							<div class="form-group">
+								<div class="col-xs-2 col-sm-2 col-md-2">
+									คำถาม2
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $question2 ?> " disabled>
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-4">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $as2 ?> " disabled>
+								</div>
+							</div>
 
+<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
+							<div class="form-group">
+								<div class="col-xs-2 col-sm-2 col-md-2">
+									คำถาม3
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $question3 ?> " disabled>
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-4">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $as3 ?> " disabled>
+								</div>
+							</div>							
 
-
-
+<div class="col-xs-12 col-sm-12 col-md-12"><br></div>
+							<div class="form-group">
+								<div class="col-xs-2 col-sm-2 col-md-2">
+									เมล
+								</div>
+								<div class="col-xs-10 col-sm-10 col-md-10">
+									<input type="text" id="test" name="test" class="form-control " value="<?php echo $_SESSION['userEmail'] ?> " disabled>
+								</div>
+							</div>
 
 						 </form>
 
