@@ -1,3 +1,6 @@
+
+
+
 <table background="pic/banner.png" height=40% width=100% style="background-repeat: no-repeat;background-size: 100% 100%, auto;">
       <tr>
         <td align="right" valign="top">

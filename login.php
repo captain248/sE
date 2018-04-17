@@ -62,7 +62,7 @@
 <link href="css/blog-post.css" rel="stylesheet">
 
 <a href="#" id="login" style="color:white;" data-toggle="modal" data-target="#login-modal">
-<span class="glyphicon glyphicon-log-in"></span> Sign in</a>
+  <span class="glyphicon glyphicon-log-in"></span> Sign in</a>
 <br>
 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"
@@ -79,19 +79,34 @@
       <div class="modal-body">
 
         <!-- content goes here -->
-       <form>
+        <form>
           <div class="form-group">
-          <p id=text_login></p>
-            <label >Username</label>
-            <input type="text" class="form-control input-lg" id="usernamelogin" placeholder="Username" name="usernamelogin" >
+            <p id=text_login></p>
+            <p id=text_forget></p>
+            <label>Username</label>
+            <input type="text" class="form-control input-lg" id="usernamelogin" placeholder="Username" name="usernamelogin">
           </div>
           <div class="form-group">
-            <label >Password</label>
+            <label>Password</label>
             <input type="password" class="form-control input-lg" id="passwordlogin" placeholder="password" name="passwordlogin">
           </div>
           <div class="form-group">
 
-            <a href="ลืมรหัส.php"> Forgot your Password</a>
+
+
+
+
+            
+            
+            
+            <a href="forget.php" id="forget" method="post" > Forgot your Password</a>
+            
+            
+            
+            
+            
+
+
             <br>
           </div>
           <div class="form-group">
@@ -107,7 +122,7 @@
 
 
           </div>
-        
+
           <!--          <div class="checkbox">
                 <label>
                   <input type="checkbox"> Check me out
@@ -115,9 +130,9 @@
               </div>
 -->
 
-          <button class="btn info" id="submit" disabled >Submit</button>
+          <button class="btn info" id="submit" disabled>Submit</button>
 
-      </form>  
+        </form>
       </div>
       <div class="modal-footer">
 
@@ -130,45 +145,91 @@
   </div>
 </div>
 <script>
-  
-var text_login = document.getElementById("text_login");
+  var text_login = document.getElementById("text_login");
 
 
   $("#submit").on("click", function (g) {
-    
-  var username = $('#usernamelogin').val();
-  var password = $('#passwordlogin').val();
+
+    var username = $('#usernamelogin').val();
+    var password = $('#passwordlogin').val();
     g.preventDefault();
-    
+
     $.ajax({
       url: 'checklogin.php',
       data: {
-        username:username,
-        password:password
+        username: username,
+        password: password
       },
       type: 'POST',
       success: function (value) {
         value = $.parseJSON(value);
         if (value.check == "notpass") {
-           if(username=="" || password==""){ 
-            text_login.innerHTML = "Please input username and password";
+          if (username == "" || password == "") {
+            text_login.innerHTML = "Username & Password Incorrect";
             text_login.style.color = "#ff6666";
-            }
-            else{
+          } else {
             text_login.innerHTML = value.dataAlert;
-            text_login.style.color = "#ff6666";}
-         
-
-          //ChangeCaptcha();
+            text_login.style.color = "#ff6666";
+          }
 
 
           //ChangeCaptcha();
 
-        } else  {
+
+          //ChangeCaptcha();
+
+        } else {
           window.location.href = "index.php";
         }
       }
     });
     console.log("2");
   })
+
+
+
+var text_forget = document.getElementById("text_forget");
+var usernamelogin = document.getElementById("usernamelogin");
+
+$("#forget").on("click", function (go) {
+  console.log("2");
+  var username = $('#usernamelogin').val();
+ 
+  go.preventDefault();
+
+  $.ajax({
+    url: 'checkforget.php',
+    data: {
+      username: username
+    },
+    type: 'POST',
+    success: function (value) {
+      value = $.parseJSON(value);
+      if (value.check == "notpass") {
+
+        
+        if (username == "" ) {
+          text_login.innerHTML = "Username & Password Incorrect";
+          text_login.style.color = "#ff6666";
+        } else {
+          text_login.innerHTML = value.dataAlert;
+          text_login.style.color = "#ff6666";
+        }
+
+
+       
+
+      } else {
+        window.location.href = "forget.php?id="+usernamelogin.value;
+      }
+    }
+  });
+  
+})
+
+
+
+
+
+
 </script>

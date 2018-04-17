@@ -115,7 +115,7 @@ for($i= 0; $i < 8; $i++){
 										Firstname Lastname
 									</div>
 									<div class="col-xs-10 col-sm-10 col-md-10">
-										<input type="text" id="test" name="test" class="form-control " value="<?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?> " disabled>
+										<input type="text" id="test" name="test" class="form-control " value="<?php echo $_SESSION['fname'] ?> " disabled>
 									</div>
 								</div>
 

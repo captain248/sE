@@ -6,7 +6,7 @@
 		
            
             $fname = $_POST['firstname'] ;
-            $lname = $_POST['lastname'] ;
+          
             $iden = $_POST['ssnpassport'] ;
             $person_img = $_POST['pic'];
             $username = $_POST['username'];
@@ -24,7 +24,7 @@
             $stmt = $conn->prepare("INSERT INTO users VALUES (NULL, '$fname', '$iden', '$username', '$password', 
                                             '$birthdate', '$person_img', '$q1', '$q2', '$q3', '$ans_q1',
                                              '$ans_q2', '$ans_q3', '$email', '$status',
-                                            '$point','$lname');");
+                                            '$point');");
             $stmt->execute();
 			
             header("Location:Success.php");

@@ -16,13 +16,13 @@
 		$_SESSION['qNO1'] = $row["qNO1"];
 		$_SESSION['qNO2'] = $row["qNO2"];
 		$_SESSION['qNO3'] = $row["qNO3"];
-   		$_SESSION['question1'] = $row["question1"];
+   	$_SESSION['question1'] = $row["question1"];
 		$_SESSION['question2'] = $row["question2"];
 		$_SESSION['question3'] = $row["question3"];
 		$_SESSION['userEmail'] = $row["userEmail"];
 		$_SESSION['status'] = $row["status"];
 		$_SESSION['userPoint'] = $row["userPoint"];
-		$_SESSION['lname'] = $row["lname"];
+	
 
 		$arr = array('check' => "pass",
 														'dataAlert' => "" 

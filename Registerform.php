@@ -1,3 +1,4 @@
+
 <?php session_start(); ?>
 
 <html lang="en">
@@ -24,19 +25,14 @@
     font-size: 16px;
     cursor: pointer;
 }
-
 .success {background-color: #4CAF50;} /* Green */
 .success:hover {background-color: #46a049;}
-
 .info {background-color: #2196F3;} /* Blue */
 .info:hover {background: #0b7dda;}
-
 .warning {background-color: #ff9800;} /* Orange */
 .warning:hover {background: #e68a00;}
-
 .danger {background-color: #f44336;} /* Red */ 
 .danger:hover {background: #da190b;}
-
 .default {background-color: #e7e7e7; color: black;} /* Gray */ 
 .default:hover {background: #ddd;}
 	</style>
@@ -66,22 +62,14 @@
 		<form role="form" id="my_form" name="my_form" method="post" action="adduser.php">
 			<h2>REGISTRATION</h2>
 			
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<label class="control-label"  for="first_name">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control input-lg" placeholder="First Name" tabindex="1" required>
-						<p id=err_firstname></p>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-					<label class="control-label"  for="last_name">Last Name</label>
-						<input type="text" name="lastname" id="lastname" class="form-control input-lg" placeholder="Last Name" required>
-						<p id=err_lastname></p>
-					</div>
-				</div>
-			</div>
+			
+			<div class="form-group">
+								<label class="control-label" for="first_name">Name</label>
+								<input type="text" name="firstname" id="firstname" class="form-control input-lg" placeholder="Name" tabindex="1">
+								<p id=err_firstname></p>
+							</div>
+
+
 			
 			
 			
@@ -106,8 +94,6 @@ $(document).on('ready', function() {
         browseLabel: 'Select Folder...'
     });
 });
-
-
 </script>
 					
 			
@@ -277,14 +263,13 @@ $(document).on('ready', function() {
 	
 	
 	<?php include("footer.html")?>
-
     <!-- Bootstrap core JavaScript -->
     
 	
 	
 <script type="text/javascript">
 	
-	var pattern_name =/[a-zA-Zก-ํ]{1,}$/;
+	var pattern_name =/(?=^[A-Za-zก-์]+\s+[A-Za-zก-์]+$).{1,}/ ;
 	var pattern_ssn = /(^[A-Z]{2})[0-9]{7}$/ ; 
 	var pattern_iden = /^$|^\d{13}$/;
 	var pattern_password = /^(?=.*\d)^(?=.*[a-z])^(?=.*[A-Z])[0-9a-zA-Z\-\_]{16,}$/;
@@ -307,8 +292,6 @@ $(document).on('ready', function() {
 	var firstname = document.getElementById("firstname");
 	var err_firstname = document.getElementById("err_firstname");
 	
-	var lastname = document.getElementById("lastname");
-	var err_lastname = document.getElementById("err_lastname");
 	 
 	var ssnpassport = document.getElementById("ssnpassport");
 	var err_ssnpassport = document.getElementById("err_ssn");
@@ -334,18 +317,13 @@ $(document).on('ready', function() {
  
  
  
-
  
-
  
  $('#firstname').blur(function(){
 	
 	firstnamecheck();	
  })
-$('#lastname').blur(function(){
-	
-	lastnamecheck();	
- })
+
 $('#ssnpassport').blur(function(){
 	
 	ssncheck();	
@@ -370,17 +348,14 @@ $('#datebirth').blur(function(){
 	
 	datebirthcheck();	
  })
-
 $('#answer1').blur(function(){
 	
 	answer1check();	
  })
-
 $('#answer2').blur(function(){
 	
 	answer2check();	
  })
-
 $('#answer3').blur(function(){
 	
 	answer3check();	
@@ -390,12 +365,11 @@ $('#answer3').blur(function(){
 	
 	piccheck();	
  }) 
-
  
  $('#btn_reg').click(function(event){
 	 
 	 firstnamecheck();
-	 lastnamecheck();
+	 
 	 ssncheck();
 	 usernamecheck();
 	 passwordcheck();	
@@ -407,7 +381,7 @@ $('#answer3').blur(function(){
 	 answer3check();
 	 piccheck();	
 	 exampleCheck1_check();
- if(key&&keyfname&&keylname&&keyssn&&keyusername&&keypassword&&keyconpass&&keydate&&keya1&&keya2&&keya3&&keypic&&keyemail&&keycheckbox){ 
+ if(keyfname&&keyssn&&keyusername&&keypassword&&keyconpass&&keydate&&keya1&&keya2&&keya3&&keypic&&keyemail&&keycheckbox){ 
 		console.log("Registration!");
 		document.getElementById("my_form").submit;
 		
@@ -422,7 +396,6 @@ $('#answer3').blur(function(){
  })
  
 var key = true;
-
 var keyfname= true;
  
 function firstnamecheck(){ 
@@ -434,7 +407,7 @@ function firstnamecheck(){
 			keyfname= true;
 		}
 		else{
-			err_firstname.innerHTML = "First name must contain only letters!";
+			err_firstname.innerHTML = "First name and Last name must contain only letters! ex.abdul royae";
 	        err_firstname.style.color = "#ff6666" ;
 			key = false;
 			keyfname= false;
@@ -449,79 +422,78 @@ function firstnamecheck(){
 	}
 }	
 
-var keylname= true;
-
-function lastnamecheck(){ 
-//check pat
-	if(lastname.value != "") {
-		if(lastname.value.match(pattern_name)){
-			err_lastname.innerHTML = "";
-			key = true;
-			keylname= true;
-		}
-		else{
-			err_lastname.innerHTML = "Last name must contain only letters!";
-	        err_lastname.style.color = "#ff6666" ;
-			key = false;
-			keylname= false;
-		}	
-	}	
-	//check empty
-	else{
-		err_lastname.innerHTML = "Please enter your lastname!";
-	       err_lastname.style.color = "#ff6666" ;
-		   key = false;
-		   keylname= false;
-	}
-	
-}    
  
 var keyssn= true;
+function ssncheck() {
+			//check pat //check pat & data
+			err_ssn.innerHTML = "";
+			if (ssnpassport.value != "") {
+				if (ssnpassport.value.match(pattern_ssn) || ssnpassport.value.match(pattern_iden)) {
+					$.post('checkdataSsn.php', {
+						ssnpassport: ssnpassport.value
+					}, function (data) {
+						data = $.parseJSON(data);
 
-function ssncheck(){ 
-//check pat //check pat & data
-err_ssn.innerHTML = "";
-	if(ssnpassport.value != "") {
-		if(ssnpassport.value.match(pattern_ssn)||ssnpassport.value.match(pattern_iden)){
-			$.post('checkdataSsn.php', { ssnpassport: ssnpassport.value}, function(data) {
-			data = $.parseJSON(data);
-			if(data.count > 0 ){
-				err_ssnpassport.innerHTML = data.dataAlert  ;
-				err_ssnpassport.style.color = "#ff6666" ;
-				key = false ;
-				keyssn= false;
+console.log(ssnpassport.value.length);
+
+
+
+						if (ssnpassport.value.length == 13) {
+							for (i = 0, sum = 0; i < 12; i++)
+								sum += parseFloat(ssnpassport.value.charAt(i)) * (13 - i);
+							if ((11 - sum % 11) % 10 != parseFloat(ssnpassport.value.charAt(12))) {
+								err_ssnpassport.innerHTML = "ssn must contain only number and 9-13 number! and passport must contain ex.aa1111111 ";
+								err_ssnpassport.style.color = "#ff6666";
+								key = false;
+								kkeyssn = false;
+							} else {
+								if (data.count > 0) {
+
+									err_ssnpassport.innerHTML = data.dataAlert;
+									err_ssnpassport.style.color = "#ff6666";
+									key = false;
+									keyssn = false;
+								} else {
+									err_ssnpassport.innerHTML = data.dataAlert;
+									err_ssnpassport.style.color = "#7cfc00";
+									key = true;
+									keyssn = true;
+								}
+							}
+
+						} else {
+							if (data.count > 0) {
+
+								err_ssnpassport.innerHTML = data.dataAlert;
+								err_ssnpassport.style.color = "#ff6666";
+								key = false;
+								keyssn = false;
+							} else {
+								err_ssnpassport.innerHTML = data.dataAlert;
+								err_ssnpassport.style.color = "#7cfc00";
+								key = true;
+								keyssn = true;
+							}
+						}
+					});
+				} else {
+					err_ssnpassport.innerHTML = "ssn/passport must contain only number and 9-13 number!";
+					err_ssnpassport.style.color = "#ff6666";
+					key = false;
+					kkeyssn = false;
+				}
+			} else {
+				err_ssnpassport.innerHTML = "Please Enter Your ID Card and Passport!";
+				err_ssnpassport.style.color = "#ff6666";
+				key = false;
+				keyssn = false;
 			}
-			else{
-				err_ssnpassport.innerHTML = data.dataAlert  ;
-				err_ssnpassport.style.color = "#7cfc00" ;
-				key = true;
-				keyssn= true;
-			}
-			
-			});	
+			//check empty
+
 		}
-		else{
-			err_ssnpassport.innerHTML = "ssn/passport must contain only number and 9-13 number!";
-	        err_ssnpassport.style.color = "#ff6666" ;
-			key = false;
-			kkeyssn= false;
-		}	
-    }
-	else{
-		err_ssnpassport.innerHTML = "Please enter your ssn/passport!";
-	       err_ssnpassport.style.color = "#ff6666" ;
-		   key = false;
-		   keyssn= false;
-	}
-//check empty
-	
-}  
  
  
  var keyusername= true;
-
-
-
 function usernamecheck(){ 
 //check pat & data
 err_username.innerHTML = "";
@@ -562,7 +534,6 @@ err_username.innerHTML = "";
  
 var keypassword= true;
  
-
  function passwordcheck(){ 
 //check pat
 	if(password.value != "") {
@@ -572,7 +543,7 @@ var keypassword= true;
 			keypassword= true;
 		}
 		else{
-			err_password.innerHTML = "Password Must cContain at Least One Number And One Uppercase And Lowercase Letter And Can Use Speical Charecter (-_), And at Least 16 or More Characters!";
+			err_password.innerHTML = "Password Must Contain at Least One Number And One Uppercase And Lowercase Letter And Can Use Speical Charecter (-_), And at Least 16 or More Characters!";
 	    err_password.style.color = "#ff6666" ;
 			key = false;
 			keypassword= false;
@@ -587,7 +558,6 @@ var keypassword= true;
 	}
  }	
 //check match password
-
 var keyconpass= true;
  
 function confirm_passwordcheck(){ 
@@ -606,12 +576,12 @@ function confirm_passwordcheck(){
 				keyconpass= false;
 			}
 		}
-	}
-	else{
-		   err_confirm_password.innerHTML = "Please confirm your password!";
-	       err_confirm_password.style.color = "#ff6666" ;
+		else{
+		   	err_confirm_password.innerHTML = "Please confirm your password!";
+	      err_confirm_password.style.color = "#ff6666" ;
 		   key = false;
 		   keyconpass= false;
+		}	
 	}
 }
  
@@ -630,8 +600,8 @@ var keydate= true;
  		 	age--;
 		}
 		
-		if(age<15 || age>120){
-			err_datebirth.innerHTML = "User contain must between 15-120 years old.";
+		if(age<20){
+			err_datebirth.innerHTML = "User contain must 20+ years old.";
 	    	err_datebirth.style.color = "#ff6666" ;
 			key = false;
 			keydate= false;
@@ -639,7 +609,6 @@ var keydate= true;
 			err_datebirth.innerHTML = "";
 			keydate= true;
 		}
-
 		
 	}	
 	//check empty
@@ -655,8 +624,6 @@ var keydate= true;
 var keya1= true;
  
  
-
-
 function answer1check(){ 
 //check pat
 	if(answer1.value != "") {
@@ -675,7 +642,6 @@ function answer1check(){
 }     
  
 var keya2= true;
-
  function answer2check(){ 
 //check pat
 	if(answer2.value != "") {
@@ -694,7 +660,6 @@ var keya2= true;
 }  
  
 var keya3= true;
-
  function answer3check(){ 
 //check pat
 	if(answer3.value != "") {
@@ -714,7 +679,6 @@ var keya3= true;
  
  
 var keypic= true;
-
  function piccheck(){ 
 //check pat
 	if(pic.value != "") {
@@ -723,7 +687,7 @@ var keypic= true;
 	}	
 	//check empty
 	else{
-		err_pic.innerHTML = "Please upload your pic!";
+		err_pic.innerHTML = "Please Upload Your Picture";
 		err_pic.style.color = "#ff6666" ;
 		key = false;
 		keypic=  false;
@@ -736,7 +700,6 @@ var keypic= true;
  
 function emailcheck(){
  //check pat & data  
-
 	if(email.value != "") {
 		if(email.value.match(pattern_email)){
 			$.post('checkdataEmail.php', { email: email.value}, function(data) {
@@ -772,12 +735,9 @@ else{
 			}
    	
 }
-
 var keycheckbox= true;
-
 function exampleCheck1_check(){ 
 //check pat
-
 	if(document.getElementById('exampleCheck1').checked) {
 		err_exampleCheck1.innerHTML = "";
 		key = true;
@@ -794,8 +754,5 @@ function exampleCheck1_check(){
 }  
  
 </script>
-
   </body>
-
-
 </html>
