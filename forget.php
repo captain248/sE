@@ -89,7 +89,9 @@ else{
 
                 <h2>FORGET?</h2>
 
-                <p id=aleart align='center'></p>
+
+
+                <p id=aleart align='center' style ="color:#ff6666"><?php if($result["userPoint"] >= 3){echo "Blocked";} ?></p>
 
 
                 <!--Question-->
@@ -106,6 +108,7 @@ else{
                     <label class="control-label" for="answer">Answer 1</label>
                     <input type="text" name="answer1" id="answer1" class="form-control input-lg" placeholder="Answer" required>
                     <p id=err_answer1></p>
+                    
                   </div>
 
                 </div>
@@ -188,6 +191,8 @@ else{
     <!-- Bootstrap core JavaScript -->
 
 
+<input type='hidden' id='username' name='username' class='form-control ' value='<?php echo $username ;?>' disabled>  
+<input type='hidden' id='point' name='point' class='form-control ' value='<?php echo $result["userPoint"] ;?>' disabled>  
   </body>
 
 
@@ -195,12 +200,13 @@ else{
   <script>
     var aleart = document.getElementById('aleart');
 
-    var key = true;
+    var key = false;
+    var keyblock = false;
   var result1 = "<?php echo $result["question1"]; ?>";
   var result2 = "<?php echo $result["question2"]; ?>";
   var result3 = "<?php echo $result["question3"]; ?>";
-  var point ="<?php echo $result["userPoint"]; ?>";
-  var username ="<?php echo $result["userName"]; ?>";
+  var point = $('#point').val();
+  var username = $('#username').val();
 
     console.log(result1);
 
@@ -219,8 +225,6 @@ else{
           console.log("F1");
         }
       }
-
-
       //check empty
       else {
         aleart.innerHTML = "Wrong Answer";
@@ -229,32 +233,44 @@ else{
       }
     }
 
+  function block() {
+      if (point >= 3) {
+        
+        aleart.innerHTML = "Blocked";
+        aleart.style.color = "#ff6666";
+        keyblock = false;
+          console.log("T1");
+      }  
+      else {
+        keyblock = true;
+      }
+  }
     //button
     $('#enter').click(function (event) {
-      ascheck()
-
-      if (key) {
+      ascheck();
+      block();
+      if (key&&keyblock) {
         console.log("true!");
         document.getElementById("form").submit;
-
+        point=0;
+        $.post('updateuserpoint.php', {
+          point: point,
+          username: username
+        }, function (data) {          
+          console.log(data);
+        });
 
 
       } else {
         event.preventDefault();
         console.log("false!");
-        
-       /* $.post('updateuserpoint.php?id=<?php ".$username." ?>', { point: point.value}, function(data) {
-			  data = $.parseJSON(data);
-				if(data.count > 0){
-				aleart.innerHTML = data.dataAlert  ;
-				aleart.style.color = "#ff6666" ;
-				
-			}
-
-
-      
-			});	
-      */
+        point++;
+        $.post('updateuserpoint.php', {
+          point: point,
+          username: username
+        }, function (data) {          
+          console.log(data);
+        });
     }
     })
   </script>

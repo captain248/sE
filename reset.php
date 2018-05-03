@@ -58,7 +58,7 @@ $username = $_GET["id"];
                   New Password
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10">
-                  <input type="text" id="newpassword" name="newpassword" class="form-control ">
+                  <input type="password" id="newpassword" name="newpassword" class="form-control ">
                 </div>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12"><p id=aleart2></p></div>
@@ -68,7 +68,7 @@ $username = $_GET["id"];
                   confirm Password
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10">
-                  <input type="text" id="confirmPassword" name="confirmPassword" class="form-control ">
+                  <input type="password" id="confirmPassword" name="confirmPassword" class="form-control ">
                 </div>
               </div>
               <div class="row">

@@ -2,11 +2,18 @@
 	session_start();
 	require('connect.php');
 
+
+
+
 	$sql = "SELECT * FROM users WHERE userName = '" .$_POST['username']."' ";
 	$sql .= "AND password ='".$_POST['password']."' ";
 	$result = $conn->query($sql);
 	
+	
+
+
 	if($row = $result->fetch()){
+		$_SESSION['userid'] = $row["userID"];
 		$_SESSION['fname'] = $row["fname"];
 		$_SESSION['personID'] = $row["personID"];
 		$_SESSION['userName'] = $row["userName"];
@@ -25,7 +32,9 @@
 	
 
 		$arr = array('check' => "pass",
-														'dataAlert' => "" 
+														'dataAlert' => "" ,
+														'status'=> $row["status"]
+
 													);					
 
 		

@@ -1,5 +1,5 @@
 <?php
-session_start();
+  session_start();
   require('connect.php');
   $sql = "SELECT * FROM news ORDER BY id DESC LIMIT 10";
   $result = $conn->query($sql);

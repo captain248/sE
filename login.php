@@ -172,14 +172,15 @@
             text_login.style.color = "#ff6666";
           }
 
-
-          //ChangeCaptcha();
-
-
-          //ChangeCaptcha();
-
         } else {
-          window.location.href = "index.php";
+          if(value.status == "admin"){
+            window.location.href = "manage.php";
+          }
+          else{
+            window.location.href = "index.php";
+          }
+          
+
         }
       }
     });
